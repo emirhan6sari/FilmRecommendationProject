@@ -1,0 +1,140 @@
+/* Genel Sayfa Stili */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Başlık Stili */
+h1 {
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Film Seçme Alanı */
+form {
+    background: white;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+/* Seçim Kutusu */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Öneri Butonu */
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 100%;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Seçilen Filmler Listesi */
+#selected-movies-list {
+    margin-top: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    min-height: 50px; /* Minimum yükseklik */
+    max-height: 300px; /* Maksimum yükseklik (fazla film eklenirse scrollbar çıkacak) */
+    overflow-y: auto; /* Kaydırma çubuğu ekleme */
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Seçilen Filmler İçin Liste Elemanları */
+#selected-movies-list li {
+    list-style: none;
+    padding: 10px;
+    background: #e9ecef;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+}
+
+/* ❌ Silme Butonu */
+#selected-movies-list button {
+    background-color: red;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+#selected-movies-list button:hover {
+    background-color: darkred;
+}
+
+/* Hata ve Uyarı Mesajları */
+p {
+    font-size: 16px;
+}
+
+p.warning {
+    color: red;
+    font-weight: bold;
+}
+
+/* Doğruluk Ölçümleri Kutusu (Sağ Alt Köşe) */
+.accuracy-box {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    max-width: 300px;
+}
+
+/* Geri Dön Butonu */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kullanıcı Bazlı Öneriler</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h1>Kullanıcı Bazlı (KNN) Önerilen Filmler</h1>
+
+    {% if movies %}
+        <ul>
+            {% for movie in movies %}
+                <li>{{ movie['title'] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>⚠️ Henüz önerilecek film bulunamadı.</p>
+    {% endif %}
+
+    <!-- 🎯 Öneri Başarı Skorları -->
+    {% if accuracy %}
+        <div class="accuracy-box">
+            <h2>🎯 Öneri Başarısı</h2>
+            <p>✅ Ortalama Rating Farkı: {{ accuracy['rating_diff'] | round(2) }}</p>
+        </div>
+    {% else %}
+        <p>⚠️ Öneri doğruluk skorları mevcut değil.</p>
+    {% endif %}
+
+    <!-- 👇 Tercih edilen saat dilimi -->
+    {% if preferred_time %}
+        <div style="margin-top: 20px; font-size: 18px;">
+            🎥 Tercih ettiğiniz film izleme zamanınız: <strong>{{ preferred_time }}</strong> güzel tercih! 😊
+        </div>
+    {% endif %}
+
+    <a href="/">⬅️ Geri Dön</a>
+</body>
+</html>

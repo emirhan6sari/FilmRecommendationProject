@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>🎬 Önerilen Filmler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📌 Seçtiğiniz Filmler</h1>
+    {% if selected_movies %}
+        <ul>
+            {% for movie in selected_movies %}
+                <li><strong>{{ movie }}</strong></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="color: red;">⚠️ Hiç film seçmediniz!</p>
+    {% endif %}
+
+    <h1>🎬 Önerilen Filmler</h1>
+    {% if movies %}
+        <ul>
+            {% for movie in movies %}
+                <li class="{{ movie.color }}">
+                    {{ movie.title }} — <span style="font-size: 14px;">{{ movie.similarity }}%</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="color: red;">⚠️ Seçtiğiniz filmlere uygun öneri bulunamadı.</p>
+    {% endif %}
+
+    {% if score is not none %}
+        <div class="accuracy-box">
+            <h2>🎯 Cosine Benzerlik Ortalaması</h2>
+            <p>✅ Ortalama Skor: {{ score | round(2) }}%</p>
+        </div>
+    {% endif %}
+
+    <a href="/">⬅️ Geri Dön</a>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Film Tavsiye Sistemi</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index_style.css') }}">
+    <script src="{{ url_for('static', filename='index_script.js') }}"></script>
+</head>
+<body>
+    <h1>🎬 Film Tavsiye Sistemi</h1>
+
+    <!--  1. Film Türüne Göre Öneri -->
+    <h2>1. Film Türüne Göre Öneri</h2>
+    <form action="/recommend_by_genre" method="POST">
+        <label for="movies">İzlediğiniz filmleri seçin:</label>
+        <select name="movies" id="movies" multiple required>
+            {% for movie in movies %}
+                <option value="{{ movie['title'] }}">{{ movie['title'] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Öneri Al</button>
+    </form>
+
+    <!-- Seçilen filmleri listeleme özelliği -->
+    <h3>Seçtiğiniz Filmler:</h3>
+    <ul id="selected-movies-list"></ul>
+
+    <!--  2. Kullanıcı Bazlı (KNN) Öneri -->
+    <h2>2. Kullanıcı Bazlı KNN Önerisi</h2>
+    <form action="/knn_recommend" method="POST">
+        <label for="user_id">Kullanıcı ID girin:</label>
+        <input type="number" name="user_id" required>
+        <button type="submit">Öneri Al</button>
+    </form>
+
+    <!--  JavaScript ile Seçilen Filmleri Listeleme -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let movieSelect = document.getElementById("movies");
+        let selectedMoviesList = document.getElementById("selected-movies-list");
+
+        function updateSelectedMovies() {
+            selectedMoviesList.innerHTML = "";  // Listeyi temizle
+            let selectedOptions = Array.from(movieSelect.selectedOptions);
+            selectedOptions.forEach(option => {
+                let li = document.createElement("li");
+                li.textContent = option.value;  // Seçilen filmin adını ekle
+                
+                // ❌ Butonu ile film kaldırma özelliği
+                let removeButton = document.createElement("button");
+                removeButton.textContent = "❌";
+                removeButton.style.marginLeft = "10px";
+                removeButton.onclick = function() {
+                    option.selected = false;  // Seçimi kaldır
+                    updateSelectedMovies();  // Listeyi güncelle
+                };
+
+                li.appendChild(removeButton);
+                selectedMoviesList.appendChild(li);
+            });
+        }
+
+        movieSelect.addEventListener("change", updateSelectedMovies);
+    });
+    </script>
+
+</body>
+</html>
